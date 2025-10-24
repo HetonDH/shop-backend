@@ -12,10 +12,10 @@ public class ServiceProductHandler implements ProductTypeHandler {
     @Override
     public void prepare(Product product, ProductDtos.CreateReq req) {
         product.setType(Product.Type.SERVICE);
-        // 服务类商品也许没有库存，可能需要 serviceDuration
+        // MAY NEED SERVICE DURATION Kind of like G2G
         if (req.serviceDuration() == null || req.serviceDuration().isBlank()) {
             throw new IllegalArgumentException("SERVICE product requires serviceDuration (e.g. 'P30D')");
         }
-        // 也可能规定 price 可以为0（比如免费试用服务）——取决于业务
+        // ALSO CAN SET PRICE TO ZERO
     }
 }

@@ -14,25 +14,25 @@ public class ProductController {
         this.svc = svc;
     }
 
-    // 创建商品（未上架）
+    // Creating product（unpublished [default]）
     @PostMapping
     public ProductDtos.Resp create(@Valid @RequestBody ProductDtos.CreateReq req){
         return svc.create(req);
     }
 
-    // 上架
+    // publish product
     @PostMapping("/{id}/publish")
     public ProductDtos.Resp publish(@PathVariable Long id){
         return svc.publish(id);
     }
 
-    // 下架
+    // unpublish product
     @PostMapping("/{id}/unpublish")
     public ProductDtos.Resp unpublish(@PathVariable Long id){
         return svc.unpublish(id);
     }
 
-    // 查询单个商品
+    // get single product
     @GetMapping("/{id}")
     public ProductDtos.Resp get(@PathVariable Long id){
         return svc.get(id);

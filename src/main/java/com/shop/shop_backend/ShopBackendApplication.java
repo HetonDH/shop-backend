@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
-@EnableCaching // 允许 @Cacheable,@CacheEvict
+@EnableCaching // allow @Cacheable,@CacheEvict
 public class ShopBackendApplication {
     public static void main(String[] args) {
         SpringApplication.run(ShopBackendApplication.class, args);

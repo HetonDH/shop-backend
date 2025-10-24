@@ -20,7 +20,7 @@ public class PricingService {
 
     /**
      * subtotal: 购物车商品小计
-     * rules: 促销规则配置列表，如
+     * rules: 促销规则配置列表，ex:
      * [
      *   {"code":"FULL_REDUCTION","threshold":200,"minus":30},
      *   {"code":"PERCENT_OFF","percent":10}
@@ -33,7 +33,7 @@ public class PricingService {
 
         for (int i = 0; i < chain.size(); i++) {
             PromotionStep step = chain.get(i);
-            Map<String,Object> cfg = rules.get(i); // 假设同顺序
+            Map<String,Object> cfg = rules.get(i); // if in the same order
             step.apply(ctx, cfg);
         }
 

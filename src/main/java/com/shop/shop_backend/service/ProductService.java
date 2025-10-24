@@ -32,7 +32,7 @@ public class ProductService {
     @Transactional
     @CacheEvict(value = "product:detail", allEntries = true)
     public ProductDtos.Resp create(ProductDtos.CreateReq req){
-        // 1. 基础字段
+        // 1. basic product
         Product p = new Product();
         p.setTitle(req.title());
         p.setDescription(req.description());
@@ -40,17 +40,17 @@ public class ProductService {
         p.setSku(req.sku());
         p.setStatus(Product.Status.INACTIVE);
 
-        // 2. 用商品类型工厂做“特有规则”
+        // 2. setting up special rule for product type factory
         productTypeFactory.of(req.type()).prepare(p, req);
 
-        // 3. 保存商品
+        // 3. save product
         Product saved = products.save(p);
 
-        // 4. 建库存（服务类可能不需要库存？简单起见都建）
+        // 4. build inventory（服务类可能不需要库存？）
         int initStock = req.initStock() == null ? 0 : req.initStock();
         inventory.save(new Inventory(saved, Math.max(0, initStock)));
 
-        // 5. 返回 DTO
+        // 5. DTO
         return new ProductDtos.Resp(
                 saved.getId(),
                 saved.getTitle(),

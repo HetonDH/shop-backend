@@ -33,7 +33,7 @@ public class Product {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Status status = Status.INACTIVE; // 默认未上架
+    private Status status = Status.INACTIVE; // default value
 
     @Column(nullable = false)
     private Instant createdAt = Instant.now();
